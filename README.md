@@ -2,7 +2,7 @@
 Vehicle Service Management System - 'Multiple' File upload Leads to Stored Cross-Site Scripting
 
 ### Exploit Title: Vehicle Service Management System - 'Multiple' File upload Leads to Stored Cross-Site Scripting
-### Date: 28/12/2021
+### Date: 29/12/2021
 ### Exploit Author: P.L.Sanu
 ### Exploit Author Website: https://www.plsanu.com
 ### Vendor Homepage: https://www.sourcecodester.com
